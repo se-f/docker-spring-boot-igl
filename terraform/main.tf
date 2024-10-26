@@ -28,6 +28,14 @@ resource "aws_security_group" "eks_cluster_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 30000
+    to_port     = 30000
+    protocol    = "tcp"
+    # Allow traffic from the cluster's security group
+    security_groups = [aws_security_group.eks_cluster_sg.id]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -90,7 +98,10 @@ resource "aws_eks_node_group" "my_node_group" {
 
   scaling_config {
     desired_size = 2
-    max_size     = 3
+    max_size     = 2
     min_size     = 1
   }
+
+  depends_on = [aws_eks_cluster.my_cluster]
+
 }
