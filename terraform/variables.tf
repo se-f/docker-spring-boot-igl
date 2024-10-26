@@ -7,44 +7,47 @@ variable "aws_region" {
 variable "aws_access_key_id"{
   description = "AWS Access ID"
   type = string
+  sensitive = true
 }
 
 variable "aws_secret_access_key"{
   description = "AWS Secret Access Key"
   type = string
+  sensitive = true
 }
 
 variable "aws_session_token"{
   description = "AWS Session Token"
   type = string
+  sensitive = true
 }
 
 variable "cluster_name" {
   description = "Nom du cluster EKS"
   type        = string
-  default     = "mykubernetes"  # Nom du cluster mis à jour
+  default     = "k8s-igl5"  # Nom du cluster mis à jour
 }
 
 variable "subnet_ids" {
   description = "IDs des sous-réseaux"
   type        = list(string)
-  default     = ["subnet-075e0dd45da90bdb8", "subnet-0114974e6dbd8217e"]  # Valeurs par défaut
+  default     = ["subnet-0a90bd72db31a8799", "subnet-06771ea51d020f481"]  # east 1a 1b
 }
 
 variable "role_arn" {
   description = "ARN du rôle IAM pour EKS"
   type        = string
-  default     = "arn:aws:iam::744983671605:role/LabRole"  # Valeur par défaut
+  default     = "arn:aws:iam::648084196633:role/LabRole"  # Valeur par défaut
 }
 
 variable "vpc_id" {
   description = "L'ID du VPC pour le cluster EKS"
   type        = string
-  default     = "vpc-04c984733bc5b455e"  # Remplacez par votre ID de VPC réel
+  default     = "vpc-0d26558b74a900591"  # Remplacez par votre ID de VPC réel
 }
 
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string
-  default     = "10.0.0.0/16"  # Modifiez-le selon vos besoins
+  default     = "172.31.0.0/16"  # Modifiez-le selon vos besoins
 }
